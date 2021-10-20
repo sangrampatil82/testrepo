@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'TestPro';
+  activeTab=""
+  ngOnInit(){
+
+
+  }
+
+  activateTab(str:string){
+    this.activeTab = str;
+  }
 }

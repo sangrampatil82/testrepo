@@ -1,0 +1,37 @@
+<div fxLayout fxLayoutAlign="center center">
+  <mat-form-field floatLabel="never">
+    <input type="text" [(ngModel)]="searchRepo" matInput (keyup)="searchForRepo($event)" placeholder="Search your repo here..." >
+    <!-- <mat-error *ngIf="UnitName.invalid" style="color: red;">{{unitNameError()}}</mat-error> -->
+  </mat-form-field>
+</div>
+<table mat-table [dataSource]="mainData" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Repo Name </th>
+    <td mat-cell *matCellDef="let element" style="width: 20%;"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="owner">
+    <th mat-header-cell *matHeaderCellDef> Owner Name </th>
+    <td mat-cell *matCellDef="let element" style="width: 20%;"> {{element.owner.login}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let element" style="width: 20%;"> {{element.description}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="stargazers_count">
+    <th mat-header-cell *matHeaderCellDef> Stars Count </th>
+    <td  mat-cell *matCellDef="let element" style="width: 10%;"> {{element.stargazers_count}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="clone_url">
+    <th mat-header-cell *matHeaderCellDef> Repo URL </th>
+    <td mat-cell *matCellDef="let element" style="width: 20%;"> {{element.clone_url}} </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

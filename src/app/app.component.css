@@ -1,0 +1,19 @@
+
+
+li{
+  display: inline-block;
+  width: 140px;
+  margin-right: 10px;
+  border:1px solid black;
+  cursor: pointer;
+}
+
+.activate-view1,.activate-view2{
+  background-color: brown;
+  color: white;
+}
+
+.deactivate-view1,.deactivate-view2{
+  background-color: yellow;
+  color: black;
+}
