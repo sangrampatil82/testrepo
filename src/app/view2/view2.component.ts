@@ -55,9 +55,14 @@ export class View2Component implements OnInit {
       });
   }
 
-  showError(responseArr:any) {
-    let errorMessage = (responseArr.length == 0)?"No data found":"Error fetching details"
-    this.toastr.error(errorMessage, 'Major Error');
+  showError(responseArr:any,errorMessage:any=undefined) {
+    if(errorMessage){
+      this.toastr.error(errorMessage, 'Major Error');
+    }
+    if(responseArr.length == 0){
+      this.toastr.error("No data found", 'Major Error');
+    }
+
   }
 
 
@@ -82,18 +87,18 @@ export class View2Component implements OnInit {
         this.displayedColumns= [ 'login','avatar_url','followers','following_count','size','created_at'];
         this.mainData = response.data;
         if(this.mainData.length == 0){
-          this.showError(this.mainData);
+          this.showError(this.mainData,undefined);
           this.displayedColumns = [];
         }
         this.mainData.forEach((element:any)=>{
            this.getTotalFollowers(element.owner.followers_url);
            this.getTotalFollowings(element.owner.following_url);
-        },
-        (error:any)=>{
-          this.showError(this.mainData);
-          this.displayedColumns = [];
         })
 
+      },(error:any)=>{
+        debugger
+        this.showError(this.mainData,error.message);
+          this.displayedColumns = [];
       })
     }else{
       this.mainData = [];
