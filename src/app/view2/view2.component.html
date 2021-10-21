@@ -13,7 +13,7 @@
 
     <ng-container matColumnDef="avatar_url">
       <th mat-header-cell *matHeaderCellDef> User Image </th>
-      <td mat-cell *matCellDef="let element" style="width: 20%;"><img style="width:100px;height:100px;" src="{{element.owner.avatar_url}}"> </td>
+      <td mat-cell *matCellDef="let element" style="width: 20%;"><a [href]="sanitizeImageUrl(element.git_url)"><img style="width:100px;height:100px;" src="{{element.owner.avatar_url}}"></a></td>
     </ng-container>
 
     <ng-container matColumnDef="followers">

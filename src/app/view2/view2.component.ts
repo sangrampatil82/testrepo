@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table'
 import { FormBuilder } from '@angular/forms';
 import { SharedService } from '../services/shared-service.service';
 import { ToastrService } from 'ngx-toastr';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 
 @Component({
@@ -23,11 +24,16 @@ export class View2Component implements OnInit {
   displayedColumns: string[];
 
   constructor(private fb:FormBuilder,private sharedService:SharedService,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
 
   }
+
+   sanitizeImageUrl(imageUrl: string): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
+}
 
   formatD(datestr:string):string{
     let dateObj = new Date(datestr);
